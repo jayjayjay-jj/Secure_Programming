@@ -4,7 +4,6 @@
     $medID = substr($_SERVER['PATH_INFO'], 1);
     $data = Admin::GetMedicineByID($medID);
     $medicine = $data->fetch_assoc();
-    var_dump($medicine);
     $medName = $medicine["MedicineName"];
     $medDesc = $medicine["MedicineDescription"];
     $medLink = $medicine["MedicineLink"];
