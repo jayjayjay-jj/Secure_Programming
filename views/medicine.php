@@ -14,13 +14,13 @@
     else if($_SERVER["REQUEST_METHOD"] === "POST"){
         if ($_POST["action"] && $_POST["id"]) {
             if ($_POST["action"] == "Update") {
-              // Update with $_POST["id"]
+                header("Location: updateMedicine.php/".$_POST["id"]);
             }
             else if($_POST["action"] == "Delete"){
                 Admin::DeleteMedicine($_POST["id"]);
+                header("Location: ".$_SERVER["SCRIPT_NAME"]);
             }
         }
-        header("Location: ".$_SERVER["SCRIPT_NAME"]);
     }
 ?>
 

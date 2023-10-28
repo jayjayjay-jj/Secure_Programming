@@ -5,11 +5,20 @@ class Admin{
         
     static function GetAllMedicine(){
         global $conn;
-
         $q = "select * from msmedicine;";
         $d = $conn->query($q);
         return $d;
     }
+    
+        static function GetMedicineByID($medID){
+            global $conn;
+            $stmt = $conn->prepare("select * from msmedicine where MedicineID = ?");
+            $stmt->bind_param("s", $medID);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            $stmt->close();
+            return $res;
+        }
 
     static function AddMedicine($medName, $medDesc, $medLink){
         global $conn;
@@ -22,6 +31,15 @@ class Admin{
         else{
             echo "fail";
         }
+        $stmt->close();
+        $conn->close();
+    }
+
+    static function UpdateMedicine($medID, $medName, $medDesc, $medLink){
+        global $conn;
+        $stmt = $conn->prepare("update msmedicine set MedicineName = ?, MedicineDescription = ?, MedicineLink = ? where MedicineID = ?");
+        $stmt->bind_param("ssss", $medName, $medDesc, $medLink, $medID);
+        $stmt->execute();
         $stmt->close();
         $conn->close();
     }
