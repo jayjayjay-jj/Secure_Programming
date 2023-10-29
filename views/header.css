@@ -1,0 +1,19 @@
+header {
+    height: 50px;
+    overflow: hidden;
+    background-color: #96B6C5;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    text-align: center;
+    float: left;
+}
+
+.logo img {
+    float: left;
+    height: 10%;
+    width: 20%;
+}
