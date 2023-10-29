@@ -1,6 +1,6 @@
 <?php
     session_start();
-    // require "../../controllers/authController.php";
+    require '../../controllers/listMedicineController.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@
         <div id="greetings1">
             <h1>View Only</h1>
         </div>
-        <div class="leaderboard"></div>
+        <div class="medicine-board"></div>
         <table class="center">
             <tr class="col1">
                 <th>No.</th>
@@ -38,41 +38,25 @@
                 <th>Description</th>
                 <th>More info</th>
             </tr>
-            <!-- <tr>
-                <td class="number">1</td>
-                <td class="uname">Heimz</td>
-                <td class="kill">40</td>
-                <td class="accuracy">95%</td>
-                <td class="points">398.254</td>
-            </tr>
-            <tr>
-                <td class="number">2</td>
-                <td class="uname">Shelby</td>
-                <td class="kill">37</td>
-                <td class="accuracy">91%</td>
-                <td class="points">368.144</td>
-            </tr>
-            <tr>
-                <td class="number">3</td>
-                <td class="uname">Jane</td>
-                <td class="kill">34</td>
-                <td class="accuracy">87%</td>
-                <td class="points">308.193</td>
-            </tr>
-            <tr>
-                <td class="number">4</td>
-                <td class="uname">Jonathan</td>
-                <td class="kill">30</td>
-                <td class="accuracy">84%</td>
-                <td class="points">298.752</td>
-            </tr>
-            <tr>
-                <td class="number">5</td>
-                <td class="uname">Andy</td>
-                <td class="kill">21</td>
-                <td class="accuracy">72%</td>
-                <td class="points">158.298</td>
-            </tr> -->
+
+            
+            <?php 
+                $allMeds = getAllMedicine();
+                
+                for($i = 1; $i <= $allMeds->num_rows; $i++){
+                    $med = $allMeds->fetch_assoc();
+                    $medName = $med["MedicineName"];
+                    $medDesc = $med["MedicineDescription"];
+                    $medLink = $med["MedicineLink"];
+                    echo "<tr>";
+                    echo "<td>$i</td>";
+                    echo "<td>$medName</td>";
+                    echo "<td>$medDesc</td>";
+                    echo "<td><a href='$medLink'>Click for details</a></td>";
+                    echo "</tr>";
+                }
+            ?>
+            
         </table>
         <br>
         <br>
