@@ -10,15 +10,15 @@ class Admin{
         return $d;
     }
     
-        static function GetMedicineByID($medID){
-            global $conn;
-            $stmt = $conn->prepare("select * from msmedicine where MedicineID = ?");
-            $stmt->bind_param("s", $medID);
-            $stmt->execute();
-            $res = $stmt->get_result();
-            $stmt->close();
-            return $res;
-        }
+    static function GetMedicineByID($medID){
+        global $conn;
+        $stmt = $conn->prepare("select * from msmedicine where MedicineID = ?");
+        $stmt->bind_param("s", $medID);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $stmt->close();
+        return $res;
+    }
 
     static function AddMedicine($medName, $medDesc, $medLink){
         global $conn;
