@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../../controllers/listMedicineController.php';
+    require '../controllers/listMedicineController.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@
             <a href="../homepage/hompage.html"><img src="../pics/logo1.png" alt=""></a>
         </div>
         <div class="navbar">
-            <a href="../register.php">Register</a>
+            <a href="register.php">Register</a>
         </div>
     </header>
     <div class="greetings">

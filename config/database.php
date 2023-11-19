@@ -1,10 +1,10 @@
 <?php
 
-$config = [
-    'server' => '127.0.0.1',
-    'username' => 'root',
-    'password' => '',
-    'database' => 'jvfrh_db',
-];
+    $config = [
+        'server' => '127.0.0.1',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'jvfrh_db',
+    ];
 
 ?>
