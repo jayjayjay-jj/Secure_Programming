@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="../header.css">
 </head>
-
 <body>
     <header>
         <div class="name">
