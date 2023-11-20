@@ -1,5 +1,5 @@
 <?php
-    require "../controllers/adminController.php";
+    require("../../controllers/adminController.php");
     
     if($_SERVER["REQUEST_METHOD"] === "POST"){
         $medName = $_POST["medicineName"];
@@ -18,7 +18,7 @@
 </head>
 <body>
     <h2>Add Medicine Page | Admin</h2>
-    <a href="./medicine.php">Medicine Page</a>
+    <a href="../medicine.php">Medicine Page</a>
     <form action="" method="post">
         <label for="medicineName">Medicine Name</label>
         <input type="text" name="medicineName" id="medicineName">

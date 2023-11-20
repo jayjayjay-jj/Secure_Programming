@@ -43,7 +43,7 @@ CREATE TABLE `msmedicine` (
 CREATE TABLE `msuser` (
   `UserID` char(15) NOT NULL,
   `Username` varchar(50) NOT NULL,
-  `UserPassword` varchar(50) NOT NULL,
+  `UserPassword` varchar(255) NOT NULL,
   `UserRole` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

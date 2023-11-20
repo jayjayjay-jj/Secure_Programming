@@ -1,5 +1,5 @@
 <?php
-    require '../controllers/adminController.php';
+    require("../../controllers/adminController.php");
 
     $medID = substr($_SERVER['PATH_INFO'], 1);
     $data = Admin::GetMedicineByID($medID);
@@ -10,7 +10,7 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         Admin::UpdateMedicine($medID,$_POST["medicineName"], $_POST["medicineDesc"], $_POST["medicineLink"]);
-        header("Location: ../medicine.php");
+        header("Location: ../../medicine.php");
     }
 ?>
 

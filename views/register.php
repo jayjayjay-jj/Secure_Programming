@@ -1,6 +1,12 @@
 <?php
     session_start();
     unset($_SESSION['registration_message']);
+
+    if(!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = uniqid('token', TRUE);
+    }
+
+    $csrf_token = $_SESSION['csrf_token'];
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +53,8 @@
                         
                         <input type="password" placeholder="Confirm Password" name="conf-password" id="conf-password" class="form-input" autocomplete="off" required>
                     </div>
+        
+                    <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
 
                     <button name="register" type="submit" class="button">
                         Register

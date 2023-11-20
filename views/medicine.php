@@ -14,7 +14,7 @@
     else if($_SERVER["REQUEST_METHOD"] === "POST"){
         if ($_POST["action"] && $_POST["id"]) {
             if ($_POST["action"] == "Update") {
-                header("Location: updateMedicine.php/".$_POST["id"]);
+                header("Location: medicine/updateMedicine.php/".$_POST["id"]);
             }
             else if($_POST["action"] == "Delete"){
                 Admin::DeleteMedicine($_POST["id"]);
@@ -33,7 +33,7 @@
 </head>
 <body>
     <h2>Medicine Page | Admin</h2>
-    <a href="./addMedicine.php">Add Medicine Page</a>
+    <a href="./medicine/addMedicine.php">Add Medicine Page</a>
     <table>
         <thead>
             <th>Medicine ID</th>

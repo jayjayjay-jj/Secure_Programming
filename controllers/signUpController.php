@@ -3,6 +3,23 @@
 
     session_start();
     $is_register = false;
+
+    function checkUsername($username) {
+        global $conn;
+
+        $query = "SELECT * FROM MsUser WHERE Username = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+
+        if($result->num_rows == 1) {
+            return false;
+        }
+
+        return true;
+    }
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         
@@ -11,10 +28,20 @@
             $password = htmlspecialchars(trim($_POST['password']));
             $confPassword = htmlspecialchars(trim($_POST['conf-password']));
     
-            if (empty($username) || empty($password) || empty($confPassword)){
-                $_SESSION['error_message'] = "All field be filled";
+            if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                $registrationMessage = "Anti-CSRF token invalid";
+                $_SESSION['error_message'] = $registrationMessage;
+    
+                header('Location: ../views/register.php?error=1');
+    
+            } else if (empty($username) || empty($password) || empty($confPassword)){
+                $_SESSION['error_message'] = "All field must be filled";
                 header('Location: ../views/register.php?error=1');
 
+            } else if(!checkUsername($username)) {
+                $_SESSION['error_message'] = "Username must be unique!";
+                header('Location: ../views/register.php?error=1');
+                
             } else if (strlen($password) < 8) {
                 $_SESSION['error_message'] = "Password must be at least 8 characters";
                 header('Location: ../views/register.php?error=1');
@@ -25,16 +52,12 @@
 
             } else {
                 $id = "UI" . uniqid();
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
                 $stmt = $conn->prepare("INSERT INTO msuser (UserId, Username, UserPassword, UserRole) VALUES (?, ?, ?, 'Guest')");
-
                 $stmt->bind_param("sss", $id, $username, $hashed_password);
-
-                var_dump($stmt);
     
                 if ($stmt->execute()){
-                    $_SESSION['username'] = hash('sha256', $username . $_SERVER['REMOTE_ADDR'] . $_SERVER['HTTP_USER_AGENT']);
                     $registrationMessage = "Registration Successful!";
 
                     $_SESSION['is_register'] = true;
