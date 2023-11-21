@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,9 +10,6 @@
     <link rel="stylesheet" href="../../styles/header.css">
     <link rel="stylesheet" href="../../styles/footer.css">
 </head>
-
-
-
 <body>
     <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="text-center">
@@ -23,10 +18,8 @@
             <p class="lead">
                 The page you’re looking for doesn’t exist.
                 </p>
-            <a href="../views/home.php" class="btn btn-primary">Go Home</a>
+            <a href="../../views/medicine.php" class="btn btn-primary">Go Home</a>
         </div>
     </div>
 </body>
-
-
 </html>

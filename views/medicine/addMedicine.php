@@ -21,20 +21,62 @@
     <link rel="stylesheet" href="../../styles/footer.css">
 </head>
 <body>
-    <h2>Add Medicine Page | Admin</h2>
-    <a href="../medicine.php">Medicine Page</a>
-    <form action="" method="post">
-        <label for="medicineName">Medicine Name</label>
-        <input type="text" name="medicineName" id="medicineName">
-        <br>
-        <label for="medicineDesc">Medicine Description</label>
-        <textarea name="medicineDesc" id="medicineDesc" cols="30" rows="10"></textarea>
-        <br>
-        <label for="medicineLink">Medicine Link</label>
-        <input type="text" name="medicineLink" id="medicineLink">
-        <br>
-        <button class="button">Add Medicine</button>
+    <header>
+        <div class="navbar">
+            <div class="nav-container">
+                <a href="../homepage/hompage.html" class="nav-title">Wiki-Medic</a>
 
-    </form>
+                <button class="nav-button">
+                    <a href="../controllers/logoutController.php">
+                        Logout
+                    </a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="jumbotron-container">
+            <div class="greetings">
+                <br><br>
+                <h2><b>Add Medicine</b></h2>
+                <br>
+            </div>
+
+            <a href="./medicine.php">Medicine Page</a>
+
+            <form action="" method="post">
+                <div class="form-div">
+                    <label for="medicineName" class="form-label">
+                        Medicine Name
+                    </label>
+
+                    <input type="text" placeholder="Medicine Name" name="medicineName" id="medicineName" class="form-input" autocomplete="off" required>
+                </div>
+
+                <div class="form-div">
+                    <label for="medicineDesc" class="form-label">
+                        Medicine Description
+                    </label>
+
+                    <textarea name="medicineDesc" placeholder="Medicine Description" id="medicineDesc" cols="10" rows="5" class="form-input" autocomplete="off" required></textarea>
+                </div>
+
+                <div class="form-div">
+                    <label for="medicineLink" class="form-label">
+                        Medicine Link
+                    </label>
+
+                    <input type="text" placeholder="Medicine Link" name="medicineLink" id="medicineLink" class="form-input" autocomplete="off" required>
+                </div>
+
+                <button class="button">Add Medicine</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright @ 2023 [Wiki-Medic]. All Rights Reserved</p>
+    </footer>
 </body>
 </html>

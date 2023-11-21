@@ -3,14 +3,17 @@
     
     $hashID = substr($_SERVER['PATH_INFO'], 1);
     $medID = Admin::GetMedicineIDByHashID($hashID);
+
     if($medID == null){
-        header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../error.php");
+        header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../error/404.php");
     }
+
     $data = Admin::GetMedicineByID($medID);
     $medicine = $data->fetch_assoc();
     $medName = $medicine["MedicineName"];
     $medDesc = $medicine["MedicineDescription"];
     $medLink = $medicine["MedicineLink"];
+    
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         Admin::UpdateMedicine($medID,$_POST["medicineName"], $_POST["medicineDesc"], $_POST["medicineLink"]);
         header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../medicine.php");
@@ -29,23 +32,65 @@
     <link rel="stylesheet" href="../../styles/footer.css">
 </head>
 <body>
-    <h2>Update Medicine Page | Admin</h2>
-    <a href="./medicine.php">Medicine Page</a>
-    <form action="" method="post">
-        <!-- <label for="medicineID">Medicine ID</label> -->
-        <input type="hidden" name="medicineID" id="medicineID" value="<?php echo $medID ?>" disabled>
-        <!-- <br> -->
-        <label for="medicineName">Medicine Name</label>
-        <input type="text" name="medicineName" id="medicineName" value="<?php echo $medName ?>">
-        <br>
-        <label for="medicineDesc">Medicine Description</label>
-        <textarea name="medicineDesc" id="medicineDesc" cols="30" rows="10"><?php echo $medDesc?></textarea>
-        <br>
-        <label for="medicineLink">Medicine Link</label>
-        <input type="text" name="medicineLink" id="medicineLink" value="<?php echo $medLink ?>">
-        <br>
-        <button class="button">Update Medicine</button>
+    <header>
+        <div class="navbar">
+            <div class="nav-container">
+                <a href="../homepage/hompage.html" class="nav-title">Wiki-Medic</a>
 
-    </form>
+                <button class="nav-button">
+                    <a href="../controllers/logoutController.php">
+                        Logout
+                    </a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="jumbotron-container">
+            <div class="greetings">
+                <br><br>
+                <h2><b>Update Medicine</b></h2>
+                <br>
+            </div>
+
+            <a href="./medicine.php">Medicine Page</a>
+
+            <form action="" method="post">
+                <!-- <label for="medicineID">Medicine ID</label> -->
+                <input type="hidden" name="medicineID" id="medicineID" value="<?php echo $medID ?>" disabled>
+
+                <div class="form-div">
+                    <label for="medicineName" class="form-label">
+                        Medicine Name
+                    </label>
+                    
+                    <input type="text" name="medicineName" id="medicineName" value="<?php echo $medName ?>">
+                </div>
+
+                <div class="form-div">
+                    <label for="medicineDesc" class="form-label">
+                        Medicine Description
+                    </label>
+
+                    <textarea name="medicineDesc" id="medicineDesc" cols="10" rows="5"><?php echo $medDesc?></textarea>
+                </div>
+
+                <div class="form-div">
+                    <label for="medicineLink" class="form-label">
+                        Medicine Link
+                    </label>
+
+                    <input type="text" name="medicineLink" id="medicineLink" value="<?php echo $medLink ?>">
+                </div>
+                
+                <button class="button">Update Medicine</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright @ 2023 [Wiki-Medic]. All Rights Reserved</p>
+    </footer>
 </body>
 </html>
