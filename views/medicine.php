@@ -1,5 +1,20 @@
 <?php
+    session_start();
     require '../controllers/adminController.php';
+
+    if(!isset($_SESSION['user'])){
+        header("Location: login.php");
+    }
+
+    if($_SESSION['user']['UserRole'] !== "Admin") {
+        header("Location: ./error/401.php");
+    }
+
+    if(!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = uniqid('token', TRUE);
+    }
+
+    $csrf_token = $_SESSION['csrf_token'];
 
     if($_SERVER["REQUEST_METHOD"] === "GET"){
         if(isset($_SERVER["PATH_INFO"])){
@@ -7,6 +22,13 @@
                 header("Location: ".$_SERVER["SCRIPT_NAME"]);
             }
         }
+
+        // if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        //     $loginMessage = "Anti-CSRF token invalid";
+        //     $_SESSION['error_message'] = $loginMessage;
+        //     header('Location: ../views/medicine.php?error=1');
+        // }
+        
         $allMeds = Admin::GetAllMedicine();
     }
     else if($_SERVER["REQUEST_METHOD"] === "POST"){
@@ -51,12 +73,16 @@
         <div class="jumbotron-container-medicine">
             <div class="greetings">
                 <br><br>
-            <h2>Medicine Page | Admin</h2>
-                <br>
+                <h2>Medicine Page</h2>
+                <a href="./medicine/addMedicine.php" class="view-button">
+                    Add Medicine Page
+                </a>
             </div>
+
+            <br><br>
             
-            <a href="./medicine/addMedicine.php">Add Medicine Page</a>
-            
+            <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+
             <table class="table-content">
                 <tr class="table-header">
                     <th>Medicine Name</th>

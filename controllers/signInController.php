@@ -40,10 +40,16 @@
 
                         session_regenerate_id(true);
                         $_SESSION['user'] = $curr_user;
+                        $_SESSION['role'] = $curr_user['UserRole'];
                         $_SESSION['is_login'] = true;
                         $_SESSION['login_message'] = $loginMessage;
 
-                        header('Location: ../views/home.php');
+                        if($_SESSION['user']['UserRole'] === "Admin") {
+                            header('Location: ../views/medicine.php');
+                        } else {
+                            header('Location: ../views/home.php');
+                        }
+
                         exit();
 
                     } else {

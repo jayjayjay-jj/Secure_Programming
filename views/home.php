@@ -1,6 +1,10 @@
 <?php
     session_start();
     require '../controllers/listMedicineController.php';
+
+    if(!isset($_SESSION['user'])){
+        header("Location: login.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

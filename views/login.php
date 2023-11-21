@@ -2,6 +2,12 @@
     session_start();
     unset($_SESSION['login_message']);
 
+    if(isset($_SESSION['user']) && $_SESSION['user']['UserRole'] === "Admin") {
+        header("Location: medicine.php");
+    } else if(isset($_SESSION['user']) && $_SESSION['user']['UserRole'] === "Guest") {
+        header("Location: home.php");
+    }
+
     if(!isset($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = uniqid('token', TRUE);
     }

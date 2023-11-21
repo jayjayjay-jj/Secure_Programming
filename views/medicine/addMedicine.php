@@ -1,10 +1,25 @@
 <?php
+    session_start();
     require("../../controllers/adminController.php");
+
+    if(!isset($_SESSION['user'])){
+        header("Location: ../login.php");
+    }
+
+    if($_SESSION["user"]["UserRole"] != "Admin") {
+        header("Location: ../error/401.php");
+    }
+
+    if(!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = uniqid('token', TRUE);
+    }
+
+    $csrf_token = $_SESSION['csrf_token'];
     
     if($_SERVER["REQUEST_METHOD"] === "POST"){
-        $medName = $_POST["medicineName"];
-        $medDesc = $_POST["medicineDesc"];
-        $medLink = $_POST["medicineLink"];
+        $medName = htmlspecialchars(trim($_POST["medicineName"]));
+        $medDesc = htmlspecialchars(trim($_POST["medicineDesc"]));
+        $medLink = htmlspecialchars(trim($_POST["medicineLink"]));
         Admin::AddMedicine($medName, $medDesc, $medLink);
     }
 ?>
@@ -24,10 +39,10 @@
     <header>
         <div class="navbar">
             <div class="nav-container">
-                <a href="../homepage/hompage.html" class="nav-title">Wiki-Medic</a>
+                <a href="../medicine.php" class="nav-title">Wiki-Medic</a>
 
                 <button class="nav-button">
-                    <a href="../controllers/logoutController.php">
+                    <a href="../../controllers/logoutController.php">
                         Logout
                     </a>
                 </button>
@@ -42,8 +57,6 @@
                 <h2><b>Add Medicine</b></h2>
                 <br>
             </div>
-
-            <a href="../medicine.php">Medicine Page</a>
 
             <form action="" method="post">
                 <div class="form-div">
@@ -70,8 +83,21 @@
                     <input type="text" placeholder="Medicine Link" name="medicineLink" id="medicineLink" class="form-input" autocomplete="off" required>
                 </div>
 
+                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
+
                 <button class="button">Add Medicine</button>
             </form>
+
+            <?php 
+                if(isset($_GET['error']) && $_GET['error']) {
+                    if(isset($_SESSION["error_message"])) {
+                        $errorMessage = $_SESSION["error_message"];
+                        echo '<br><div style="color:red;">' . $errorMessage . '</div>';
+                    }
+                }
+
+                unset($_SESSION['error_message']);
+            ?>
         </div>
     </main>
 

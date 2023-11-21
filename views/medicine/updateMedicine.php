@@ -1,5 +1,18 @@
 <?php
+    session_start();
     require("../../controllers/adminController.php");
+
+    if(!isset($_SESSION['user'])){
+        header("Location: ../login.php");
+    }
+
+    if($_SESSION["user"]["UserRole"] != "Admin") {
+        header("Location: ../../error/401.php");
+    }
+
+    if(!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = uniqid('token', TRUE);
+    }
     
     $hashID = substr($_SERVER['PATH_INFO'], 1);
     $medID = Admin::GetMedicineIDByHashID($hashID);
@@ -15,7 +28,7 @@
     $medLink = $medicine["MedicineLink"];
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        Admin::UpdateMedicine($medID,$_POST["medicineName"], $_POST["medicineDesc"], $_POST["medicineLink"]);
+        Admin::UpdateMedicine($medID,htmlspecialchars(trim($_POST["medicineName"])), htmlspecialchars(trim($_POST["medicineDesc"])), htmlspecialchars(trim($_POST["medicineLink"])));
         header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../medicine.php");
     }
 ?>
@@ -27,15 +40,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiki-Medic</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../styles/general.css">
-    <link rel="stylesheet" href="../../styles/header.css">
-    <link rel="stylesheet" href="../../styles/footer.css">
+    <link rel="stylesheet" href="../../../styles/general.css">
+    <link rel="stylesheet" href="../../../styles/header.css">
+    <link rel="stylesheet" href="../../../styles/footer.css">
 </head>
 <body>
     <header>
         <div class="navbar">
             <div class="nav-container">
-                <a href="../homepage/hompage.html" class="nav-title">Wiki-Medic</a>
+                <a href="../../medicine.php" class="nav-title">Wiki-Medic</a>
 
                 <button class="nav-button">
                     <a href="../controllers/logoutController.php">
@@ -49,12 +62,10 @@
     <main>
         <div class="jumbotron-container">
             <div class="greetings">
-                <br><br>
+            <br><br>
                 <h2><b>Update Medicine</b></h2>
                 <br>
             </div>
-
-            <a href="../medicine.php">Medicine Page</a>
 
             <form action="" method="post">
                 <!-- <label for="medicineID">Medicine ID</label> -->
@@ -65,7 +76,7 @@
                         Medicine Name
                     </label>
                     
-                    <input type="text" name="medicineName" id="medicineName" value="<?php echo $medName ?>">
+                    <input type="text" class="form-input" name="medicineName" id="medicineName" value="<?php echo $medName ?>">
                 </div>
 
                 <div class="form-div">
@@ -73,7 +84,7 @@
                         Medicine Description
                     </label>
 
-                    <textarea name="medicineDesc" id="medicineDesc" cols="10" rows="5"><?php echo $medDesc?></textarea>
+                    <textarea name="medicineDesc" class="form-input" id="medicineDesc" cols="10" rows="5"><?php echo $medDesc?></textarea>
                 </div>
 
                 <div class="form-div">
@@ -81,7 +92,7 @@
                         Medicine Link
                     </label>
 
-                    <input type="text" name="medicineLink" id="medicineLink" value="<?php echo $medLink ?>">
+                    <input type="text" class="form-input" name="medicineLink" id="medicineLink" value="<?php echo $medLink ?>">
                 </div>
                 
                 <button class="button">Update Medicine</button>
