@@ -45,7 +45,8 @@ class Admin{
         $stmt = $conn->prepare("insert into msmedicine (MedicineID, MedicineName, MedicineDescription, MedicineLink) values (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $id, $medName, $medDesc, $medLink);
         if($stmt->execute() === true){
-            echo "success insert";
+            // echo "success insert";
+            header("Location: ../../views/medicine.php");
         }
         else{
             echo "fail";
@@ -69,7 +70,9 @@ class Admin{
         $stmt->close();
     }
 
-    static function DeleteMedicine($medID){
+    static function DeleteMedicine($hashID){
+        $medID = Admin::GetMedicineIDByHashID($hashID);
+        
         global $conn;
 
         $stmt = $conn->prepare("delete from msmedicine where MedicineID = ?");

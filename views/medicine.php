@@ -10,24 +10,12 @@
         header("Location: ./error/401.php");
     }
 
-    if(!isset($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = uniqid('token', TRUE);
-    }
-
-    $csrf_token = $_SESSION['csrf_token'];
-
     if($_SERVER["REQUEST_METHOD"] === "GET"){
         if(isset($_SERVER["PATH_INFO"])){
             if($_SERVER["PATH_INFO"] === "/"){
                 header("Location: ".$_SERVER["SCRIPT_NAME"]);
             }
         }
-
-        // if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        //     $loginMessage = "Anti-CSRF token invalid";
-        //     $_SESSION['error_message'] = $loginMessage;
-        //     header('Location: ../views/medicine.php?error=1');
-        // }
         
         $allMeds = Admin::GetAllMedicine();
     }
@@ -58,7 +46,7 @@
     <header>
         <div class="navbar">
             <div class="nav-container">
-                <a href="../homepage/hompage.html" class="nav-title">Wiki-Medic</a>
+                <a href="../views/medicine.php" class="nav-title">Wiki-Medic</a>
 
                 <button class="nav-button">
                     <a href="../controllers/logoutController.php">

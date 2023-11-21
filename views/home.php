@@ -23,7 +23,7 @@
     <header>
         <div class="navbar">
             <div class="nav-container">
-                <a href="../homepage/hompage.html" class="nav-title">Wiki-Medic</a>
+                <a href="../views/home.php" class="nav-title">Wiki-Medic</a>
 
                 <button class="nav-button">
                     <a href="../controllers/logoutController.php">
