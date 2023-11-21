@@ -58,7 +58,7 @@
 
             <form action="" method="post">
                 <!-- <label for="medicineID">Medicine ID</label> -->
-                <input type="hidden" name="medicineID" id="medicineID" value="<?php echo $medID ?>" disabled>
+                <input type="hidden" name="medicineID" id="medicineID" value="<?php echo hash("sha256", $medID) ?>" disabled>
 
                 <div class="form-div">
                     <label for="medicineName" class="form-label">
