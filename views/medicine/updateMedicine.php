@@ -13,7 +13,7 @@
     $medName = $medicine["MedicineName"];
     $medDesc = $medicine["MedicineDescription"];
     $medLink = $medicine["MedicineLink"];
-    
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         Admin::UpdateMedicine($medID,$_POST["medicineName"], $_POST["medicineDesc"], $_POST["medicineLink"]);
         header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../medicine.php");
@@ -54,7 +54,7 @@
                 <br>
             </div>
 
-            <a href="./medicine.php">Medicine Page</a>
+            <a href="../medicine.php">Medicine Page</a>
 
             <form action="" method="post">
                 <!-- <label for="medicineID">Medicine ID</label> -->

@@ -43,7 +43,7 @@
                 <br>
             </div>
 
-            <a href="./medicine.php">Medicine Page</a>
+            <a href="../medicine.php">Medicine Page</a>
 
             <form action="" method="post">
                 <div class="form-div">
