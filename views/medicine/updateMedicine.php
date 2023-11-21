@@ -33,7 +33,7 @@
     <a href="./medicine.php">Medicine Page</a>
     <form action="" method="post">
         <!-- <label for="medicineID">Medicine ID</label> -->
-        <input type="hidden" name="medicineID" id="medicineID" value="<?php echo $medID ?>" disabled>
+        <input type="hidden" name="medicineID" id="medicineID" value="<?php echo hash("sha256", $medID) ?>" disabled>
         <!-- <br> -->
         <label for="medicineName">Medicine Name</label>
         <input type="text" name="medicineName" id="medicineName" value="<?php echo $medName ?>">

@@ -59,7 +59,6 @@
             
             <table class="table-content">
                 <tr class="table-header">
-                    <th>Medicine ID</th>
                     <th>Medicine Name</th>
                     <th>Medicine Description</th>
                     <th>Medicine Link</th>
@@ -69,11 +68,16 @@
                 <?php for($i = 0; $i < $allMeds->num_rows; $i++) {
                     $med = $allMeds->fetch_assoc();
                     $medID = $med["MedicineID"];
+                    $medName = $med["MedicineName"];
+                    $medDesc = $med["MedicineDescription"];
+                    $medLink = $med["MedicineLink"];
                 ?>
                 <tr>
-                    <?php foreach($med as $k => $v){
-                        echo "<td>$v</td>";
-                    } ?>
+                    <?php 
+                        echo "<td>$medName</td>";
+                        echo "<td>$medDesc</td>";
+                        echo "<td>$medLink</td>";
+                    ?>
                     <form method="post" action="">
                     <td>
                         <input type="submit" name="action" value="Update" class="update-button"/>
@@ -83,7 +87,7 @@
                         <input type="submit" name="action" value="Delete" class="delete-button"/>
                     </td>
 
-                    <td><input type="hidden" name="id" value="<?php echo hash("sha256",$medID); ?>"/></td>
+                    <input type="hidden" name="id" value="<?php echo hash("sha256",$medID); ?>"/>
                     </form>
                 </tr>
                 <?php }?>
