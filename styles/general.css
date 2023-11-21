@@ -20,13 +20,23 @@
     --bs-btn-hover-bg: #0b5ed7;
     --bs-btn-hover-border-color: #0a58ca;
     --bs-btn-focus-shadow-rgb: 49,132,253;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #0a58ca;
-    --bs-btn-active-border-color: #0a53be;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #0d6efd;
-    --bs-btn-disabled-border-color: #0d6efd;
+    --bs-update-btn-color: #ffc107;
+    --bs-delete-btn-color: #dc3545;
+    --bs-table-color: #000;
+    --bs-table-bg: #FFF;
+    --bs-table-border-color: #DEE2E6;
+    --bs-table-accent-bg: transparent;
+    --bs-table-stripped-color: #000;
+    --bs-table-stripped-bg: rgba(0, 0, 0);
+    --bs-table-hover-color: #000;
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    --bs-table-color: #000;
+    --bs-table-header-bg: #cfe2ff;
+    --bs-table-header-border-color: #a6b5cc;
+    --bs-table-header-striped-bg: #c5d7f2;
+    --bs-table-header-striped-color: #000;
+    --bs-table-header-hover-bg: #bfd1ec;
+    --bs-table-header-hover-color: #000;
 }
 
 body {
@@ -38,14 +48,6 @@ body {
     line-height: var(--bs-body-line-height);
     color: var(--bs-body-color);
     background-color: var(--bs-body-bg);
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: var(--bs-body-font-size-small);
 }
 
 
@@ -139,4 +141,91 @@ footer {
 
 .links {
     text-align: center;
+}
+
+.jumbotron-container {
+    display: block;
+    width: 100%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.table-content {
+    display: table;
+    text-indent: initial;
+    border-spacing: 2px;
+    caption-side: bottom;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+}
+
+.table-header {
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-header-border-color);
+    background-color: var(--bs-table-header-bg);
+    display: table-row;
+    vertical-align: inherit;
+    caption-side: bottom;
+    border-collapse: collapse;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+.table-header th {
+    background-color: var(--bs-table-header-bg);
+    padding: 0.5rem 0.5rem;
+}
+
+td {
+    padding: 0.5rem 0.5rem;
+    border-bottom-width: 1px;
+}
+
+.update-button {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    margin-left: auto;
+    color: var(--bs-update-btn-color);
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid var(--bs-update-btn-color);
+    border-radius: 0.375rem;
+    background-color: transparent;
+    transition-property: var(--bs-update-btn-color), transparent, var(--bs-update-btn-color), inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);
+    transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+    transition-delay: 0s, 0s, 0s, 0s;
+}
+
+.update-button:hover {
+    color: #FFF;
+    background-color: var(--bs-update-btn-color);
+}
+
+.delete-button {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    margin-left: auto;
+    color: var(--bs-delete-btn-color);
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid var(--bs-delete-btn-color);
+    border-radius: 0.375rem;
+    background-color: transparent;
+    transition-property: var(--bs-delete-btn-color), transparent, var(--bs-delete-btn-color), inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);
+    transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+    transition-delay: 0s, 0s, 0s, 0s;
+}
+
+.delete-button:hover {
+    color: #FFF;
+    background-color: var(--bs-delete-btn-color);
 }

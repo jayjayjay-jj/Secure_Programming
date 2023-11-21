@@ -29,37 +29,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine Page</title>
+    <title>Wiki-Medic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/general.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
 </head>
 <body>
-    <h2>Medicine Page | Admin</h2>
-    <a href="./medicine/addMedicine.php">Add Medicine Page</a>
-    <table>
-        <thead>
-            <th>Medicine ID</th>
-            <th>Medicine Name</th>
-            <th>Medicine Description</th>
-            <th>Medicine Link</th>
-            <th colspan="2">Action</th>
-        </thead>
-        <tbody>
-            <?php for($i = 0; $i < $allMeds->num_rows; $i++) {
-                $med = $allMeds->fetch_assoc();
-                $medID = $med["MedicineID"];
-            ?>
-            <tr>
-                <?php foreach($med as $k => $v){
-                    echo "<td>$v</td>";
-                } ?>
-                <form method="post" action="">
-                <td><input type="submit" name="action" value="Update"/></td>
-                <td><input type="submit" name="action" value="Delete"/></td>
-                <td><input type="hidden" name="id" value="<?php echo $medID; ?>"/></td>
-                </form>
-            </tr>
-            <?php }?>
-        </tbody>
-    </table>
+    <header>
+        <div class="navbar">
+            <div class="nav-container">
+                <a href="../homepage/hompage.html" class="nav-title">Wiki-Medic</a>
+
+                <button class="nav-button">
+                    <a href="../controllers/logoutController.php">
+                        Logout
+                    </a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="jumbotron-container">
+            <br><br>
+            <h2>Medicine Page | Admin</h2>
+            <br>
+            
+            <a href="./medicine/addMedicine.php">Add Medicine Page</a>
+            
+            <table class="table-content">
+                <tr class="table-header">
+                    <th>Medicine ID</th>
+                    <th>Medicine Name</th>
+                    <th>Medicine Description</th>
+                    <th>Medicine Link</th>
+                    <th colspan="2">Action</th>
+                </tr>
+                
+                <?php for($i = 0; $i < $allMeds->num_rows; $i++) {
+                    $med = $allMeds->fetch_assoc();
+                    $medID = $med["MedicineID"];
+                ?>
+                <tr>
+                    <?php foreach($med as $k => $v){
+                        echo "<td>$v</td>";
+                    } ?>
+                    <form method="post" action="">
+                    <td>
+                        <input type="submit" name="action" value="Update" class="update-button"/>
+                    </td>
+                    
+                    <td>
+                        <input type="submit" name="action" value="Delete" class="delete-button"/>
+                    </td>
+
+                    <td><input type="hidden" name="id" value="<?php echo $medID; ?>"/></td>
+                    </form>
+                </tr>
+                <?php }?>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright @ 2023 [Wiki-Medic]. All Rights Reserved</p>
+    </footer>
 </body>
 </html>
 
