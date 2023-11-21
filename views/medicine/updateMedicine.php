@@ -1,16 +1,19 @@
 <?php
     require("../../controllers/adminController.php");
-
-    $medID = substr($_SERVER['PATH_INFO'], 1);
+    
+    $hashID = substr($_SERVER['PATH_INFO'], 1);
+    $medID = Admin::GetMedicineIDByHashID($hashID);
+    if($medID == null){
+        header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../error.php");
+    }
     $data = Admin::GetMedicineByID($medID);
     $medicine = $data->fetch_assoc();
     $medName = $medicine["MedicineName"];
     $medDesc = $medicine["MedicineDescription"];
     $medLink = $medicine["MedicineLink"];
-
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         Admin::UpdateMedicine($medID,$_POST["medicineName"], $_POST["medicineDesc"], $_POST["medicineLink"]);
-        header("Location: ../../medicine.php");
+        header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../medicine.php");
     }
 ?>
 
@@ -29,9 +32,9 @@
     <h2>Update Medicine Page | Admin</h2>
     <a href="./medicine.php">Medicine Page</a>
     <form action="" method="post">
-        <label for="medicineID">Medicine Name</label>
-        <input type="text" name="medicineID" id="medicineID" value="<?php echo $medID ?>" disabled>
-        <br>
+        <!-- <label for="medicineID">Medicine ID</label> -->
+        <input type="hidden" name="medicineID" id="medicineID" value="<?php echo $medID ?>" disabled>
+        <!-- <br> -->
         <label for="medicineName">Medicine Name</label>
         <input type="text" name="medicineName" id="medicineName" value="<?php echo $medName ?>">
         <br>

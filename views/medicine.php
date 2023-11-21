@@ -7,9 +7,7 @@
                 header("Location: ".$_SERVER["SCRIPT_NAME"]);
             }
         }
-        else{
-            $allMeds = Admin::GetAllMedicine();
-        }
+        $allMeds = Admin::GetAllMedicine();
     }
     else if($_SERVER["REQUEST_METHOD"] === "POST"){
         if ($_POST["action"] && $_POST["id"]) {
@@ -84,7 +82,7 @@
                         <input type="submit" name="action" value="Delete" class="delete-button"/>
                     </td>
 
-                    <td><input type="hidden" name="id" value="<?php echo $medID; ?>"/></td>
+                    <td><input type="hidden" name="id" value="<?php echo hash("sha256",$medID); ?>"/></td>
                     </form>
                 </tr>
                 <?php }?>

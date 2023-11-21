@@ -7,6 +7,7 @@ class Admin{
         global $conn;
         $q = "select * from msmedicine;";
         $d = $conn->query($q);
+        // $conn->close();
         return $d;
     }
     
@@ -17,7 +18,19 @@ class Admin{
         $stmt->execute();
         $res = $stmt->get_result();
         $stmt->close();
+        // $conn->close();
         return $res;
+    }
+
+    static function GetMedicineIDByHashID($hashID){
+        $meds = Admin::GetAllMedicine();
+        for($i = 0; $i < $meds->num_rows; $i++){
+            $medID = $meds->fetch_assoc()["MedicineID"];
+            if($hashID === hash("sha256", $medID)){
+                return $medID;
+            }
+        }
+        return null;
     }
 
     static function AddMedicine($medName, $medDesc, $medLink){
@@ -32,7 +45,7 @@ class Admin{
             echo "fail";
         }
         $stmt->close();
-        $conn->close();
+        // $conn->close();
     }
 
     static function UpdateMedicine($medID, $medName, $medDesc, $medLink){
@@ -41,7 +54,7 @@ class Admin{
         $stmt->bind_param("ssss", $medName, $medDesc, $medLink, $medID);
         $stmt->execute();
         $stmt->close();
-        $conn->close();
+        // $conn->close();
     }
 
     static function DeleteMedicine($medID){
@@ -50,7 +63,7 @@ class Admin{
         $stmt->bind_param("s", $medID);
         $stmt->execute();
         $stmt->close();
-        $conn->close();
+        // $conn->close();
     }
 }
 
