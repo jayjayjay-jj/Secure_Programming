@@ -1,4 +1,5 @@
 <?php
+    phpinfo();
     session_start();
     require '../controllers/adminController.php';
 
@@ -114,10 +115,3 @@
     </footer>
 </body>
 </html>
-
-<script>
-    function deleteMedicine(str){
-        console.log(window.location.href+'/remove/'+str);
-        // window.location.href = str;  
-    }
-</script>
