@@ -68,7 +68,7 @@
                     exit();
 
                 }else{
-                    $registrationMessage = "Registration Failed! " . $stmt->error;
+                    $registrationMessage = "Registration Failed!";
                     $_SESSION['error_message'] = "Registration Failed!";
 
                     header('Location: ../views/register.php?error=1');

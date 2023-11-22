@@ -28,7 +28,11 @@
     $medLink = $medicine["MedicineLink"];
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        Admin::UpdateMedicine($medID,htmlspecialchars(trim($_POST["medicineName"])), htmlspecialchars(trim($_POST["medicineDesc"])), htmlspecialchars(trim($_POST["medicineLink"])));
+        $updatedName = htmlspecialchars(trim($_POST["medicineName"]));
+        $updatedDesc = htmlspecialchars(trim($_POST["medicineDesc"]));
+        $updatedLink = htmlspecialchars(trim($_POST["medicineLink"]));
+
+        Admin::UpdateMedicine($medID, $updatedName, $updatedDesc, $updatedLink);
         header("Location: ".$_SERVER["SCRIPT_NAME"]."/../../medicine.php");
     }
 ?>

@@ -45,13 +45,14 @@ class Admin{
         $id = "MD". uniqid();
         $stmt = $conn->prepare("insert into msmedicine (MedicineID, MedicineName, MedicineDescription, MedicineLink) values (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $id, $medName, $medDesc, $medLink);
+
         if($stmt->execute() === true){
-            // echo "success insert";
             header("Location: ../../views/medicine.php");
         }
         else{
             echo "fail";
         }
+        
         $stmt->close();
         $conn->close();
     }

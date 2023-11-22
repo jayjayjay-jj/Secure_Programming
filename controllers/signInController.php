@@ -25,7 +25,7 @@
                 $stmt = $conn->prepare("SELECT * FROM MsUser WHERE Username = ?");
 
                 if (!$stmt) {
-                    die('Error in preparing statement: ' . $conn->error);
+                    die('Error in preparing statement');
                 }
 
                 $stmt->bind_param("s", $username);
