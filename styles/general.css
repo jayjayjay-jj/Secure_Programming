@@ -256,3 +256,29 @@ td {
     color: #FFF;
     background-color: var(--bs-delete-btn-color);
 }
+
+.detail-button {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    margin-left: auto;
+    color: var(--bs-blue);
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid var(--bs-blue);
+    border-radius: 0.375rem;
+    background-color: transparent;
+    transition-property: var(--bs-blue), transparent, var(--bs-blue), inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);
+    transition-duration: 0.15s, 0.15s, 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+    transition-delay: 0s, 0s, 0s, 0s;
+}
+
+.detail-button:hover {
+    color: #FFF;
+    background-color: var(--bs-blue);
+}
+
+td{
+    text-align: center;
+}

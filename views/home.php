@@ -62,10 +62,9 @@
                         echo "<td>$i</td>";
                         echo "<td>$medName</td>";
                         echo "<td>$medDesc</td>";
-                        echo "<td><a target='.blank' href='$medLink'>Click for details</a></td>";
-                        echo "</tr>";
-                    }
                 ?>
+                        <td><a target='.blank' href='<?php echo $medLink ?>'><button class="detail-button">Details</button></a></td></tr>
+                <?php }?>
                 
             </table>
         </div>
