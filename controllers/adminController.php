@@ -1,5 +1,6 @@
 <?php
 require "connection.php";
+require "util.php";
 
 class Admin{
         
@@ -34,7 +35,7 @@ class Admin{
     static function AddMedicine($medName, $medDesc, $medLink){
         global $conn;
 
-        if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        if(Util::isInvalidCSRFToken($_POST['csrf_token'], $_SESSION['csrf_token'])) {
             $errorMessage = "Anti-CSRF token invalid";
             $_SESSION['error_message'] = $errorMessage;
 
@@ -58,7 +59,7 @@ class Admin{
     static function UpdateMedicine($medID, $medName, $medDesc, $medLink){
         global $conn;
 
-        if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        if(Util::isInvalidCSRFToken($_POST['csrf_token'], $_SESSION['csrf_token'])) {
             $errorMessage = "Anti-CSRF token invalid";
             $_SESSION['error_message'] = $errorMessage;
 

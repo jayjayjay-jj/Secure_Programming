@@ -20,7 +20,13 @@
         $medName = htmlspecialchars(trim($_POST["medicineName"]));
         $medDesc = htmlspecialchars(trim($_POST["medicineDesc"]));
         $medLink = htmlspecialchars(trim($_POST["medicineLink"]));
-        Admin::AddMedicine($medName, $medDesc, $medLink);
+
+        if(!Util::isEmptyInput($medName) || !Util::isEmptyInput($medDesc) || !Util::isEmptyInput($medLink)){
+            Admin::AddMedicine($medName, $medDesc, $medLink);
+        }
+        else{
+            header("Location: ../medicine.php");
+        }
     }
 ?>
 
