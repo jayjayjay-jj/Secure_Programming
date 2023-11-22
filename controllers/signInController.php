@@ -1,12 +1,13 @@
 <?php
     require(__DIR__.'/connection.php');
+    require(__DIR__.'/util.php');
 
     session_start();
     $is_login = false;
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         
-        if(!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        if(Util::isInvalidCSRFToken($_POST['csrf_token'], $_SESSION['csrf_token'])) {
             $loginMessage = "Anti-CSRF token invalid";
             $_SESSION['error_message'] = $loginMessage;
 
@@ -16,7 +17,7 @@
             $username = htmlspecialchars(trim($_POST['username']));
             $password = htmlspecialchars(trim($_POST['password']));
     
-            if (empty($username) || empty($password)){
+            if (Util::isEmptyInput($username) || Util::isEmptyInput($password)){
                 $_SESSION['error_message'] = "All field must be filled";
                 header('Location: ../views/login.php?error=1');
 
