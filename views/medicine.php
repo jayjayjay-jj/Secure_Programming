@@ -1,5 +1,4 @@
 <?php
-    phpinfo();
     session_start();
     require '../controllers/adminController.php';
 
