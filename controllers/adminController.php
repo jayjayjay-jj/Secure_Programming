@@ -52,6 +52,7 @@ class Admin{
             echo "fail";
         }
         $stmt->close();
+        $conn->close();
     }
 
     static function UpdateMedicine($medID, $medName, $medDesc, $medLink){
@@ -68,6 +69,7 @@ class Admin{
         $stmt->bind_param("ssss", $medName, $medDesc, $medLink, $medID);
         $stmt->execute();
         $stmt->close();
+        $conn->close();
     }
 
     static function DeleteMedicine($hashID){
@@ -79,6 +81,7 @@ class Admin{
         $stmt->bind_param("s", $medID);
         $stmt->execute();
         $stmt->close();
+        $conn->close();
     }
 }
 

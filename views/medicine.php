@@ -12,7 +12,7 @@
 
     if($_SERVER["REQUEST_METHOD"] === "GET"){
         if(isset($_SERVER["PATH_INFO"])){
-            if($_SERVER["PATH_INFO"] === "/"){
+            if($_SERVER["PATH_INFO"] === "/" || substr($_SERVER['PATH_INFO'], 1)){
                 header("Location: ".$_SERVER["SCRIPT_NAME"]);
             }
         }
