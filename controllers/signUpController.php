@@ -1,6 +1,7 @@
 <?php
     require(__DIR__.'/connection.php');
     require(__DIR__.'/util.php');
+    require(__DIR__.'/config.php');
 
     session_start();
     $is_register = false;

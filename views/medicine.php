@@ -10,6 +10,12 @@
         header("Location: ./error/401.php");
     }
 
+    if(!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = uniqid('token', TRUE);
+    }
+
+    $csrf_token = $_SESSION['csrf_token'];
+
     if($_SERVER["REQUEST_METHOD"] === "GET"){
         if(isset($_SERVER["PATH_INFO"])){
             if($_SERVER["PATH_INFO"] === "/" || substr($_SERVER['PATH_INFO'], 1)){
