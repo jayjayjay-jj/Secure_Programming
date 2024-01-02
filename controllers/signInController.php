@@ -57,7 +57,7 @@
             $password = htmlspecialchars(trim($_POST['password']));
             
             // rate Limit (5 attempts, 15 minutes)
-            if (rateLimit(5, 15)) {
+            if (rateLimit(5, 900)) {
                 if (Util::isEmptyInput($username) || Util::isEmptyInput($password)){
                     $_SESSION['error_message'] = "All field must be filled";
                     header('Location: ../views/login.php?error=1');
