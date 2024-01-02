@@ -54,14 +54,14 @@
                         exit();
 
                     } else {
-                        $loginMessage = "Password is wrong!";
+                        $loginMessage = "Account not found!";
                         $_SESSION['error_message'] = $loginMessage;
 
                         header('Location: ../views/login.php?error=1');
                     }                 
 
                 } else {
-                    $loginMessage = "User not found!";
+                    $loginMessage = "Account not found!";
                     $_SESSION['error_message'] = $loginMessage;
 
                     header('Location: ../views/login.php?error=1');

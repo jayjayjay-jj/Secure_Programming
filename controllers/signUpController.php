@@ -47,6 +47,22 @@
                 $_SESSION['error_message'] = "Password must be at least 8 characters";
                 header('Location: ../views/register.php?error=1');
                 
+            } else if (!preg_match('/[A-Z]/', $password)) {
+                $_SESSION['error_message'] = "Password must contain at least one uppercase letter.";
+                header('Location: ../views/register.php?error=1');
+                
+            } else if (!preg_match('/[a-z]/', $password)) {
+                $_SESSION['error_message'] = "Password must contain at least one lowercase letter.";
+                header('Location: ../views/register.php?error=1');
+                
+            } else if (!preg_match('/\d/', $password)) {
+                $_SESSION['error_message'] = "Password must contain at least one digit.";
+                header('Location: ../views/register.php?error=1');
+                
+            } else if (!preg_match('/[^a-zA-Z\d]/', $password)) {
+                $_SESSION['error_message'] = "Password must contain at least one special character.";
+                header('Location: ../views/register.php?error=1');
+                
             } else if(strcmp($password, $confPassword) != 0) {
                 $_SESSION['error_message'] = "Password and Confirm Password must be the same";
                 header('Location: ../views/register.php?error=1');
