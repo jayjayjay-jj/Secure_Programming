@@ -1,5 +1,6 @@
 <?php
     session_start();
+    header_remove("X-Powered-By");
     require '../controllers/adminController.php';
 
     if(!isset($_SESSION['user'])){

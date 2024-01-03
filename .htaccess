@@ -8,6 +8,11 @@ Options -Indexes
     Header unset X-Powered-By
 </IfModule>
 
+Header unset Pragma
+Header unset Last-Modified
+Header unset Cache-Control
+Header unset Server
+
 #Error Messages
 ErrorDocument 401 /views/error/401.php
 ErrorDocument 403 /views/error/403.php

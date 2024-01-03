@@ -1,5 +1,6 @@
 <?php
     session_start();
+    header_remove("X-Powered-By");
     unset($_SESSION['login_message']);
 
     if(isset($_SESSION['user']) && $_SESSION['user']['UserRole'] === "Admin") {
