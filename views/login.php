@@ -1,6 +1,7 @@
 <?php
     session_start();
     header_remove("X-Powered-By");
+    header('X-Frame-Options: DENY, SAMEORIGIN');
     unset($_SESSION['login_message']);
 
     if(isset($_SESSION['user']) && $_SESSION['user']['UserRole'] === "Admin") {

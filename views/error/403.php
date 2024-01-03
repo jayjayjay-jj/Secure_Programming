@@ -1,5 +1,6 @@
 <?php
     header_remove("X-Powered-By");
+    header('X-Frame-Options: DENY, SAMEORIGIN');
 ?>
 
 <!DOCTYPE html>
