@@ -1,7 +1,5 @@
 <?php
     session_start();
-    header_remove("X-Powered-By");
-    header('X-Frame-Options: DENY, SAMEORIGIN');
     require '../controllers/adminController.php';
 
     if(!isset($_SESSION['user'])){
@@ -11,12 +9,6 @@
     if($_SESSION['user']['UserRole'] !== "Admin") {
         header("Location: ./error/401.php");
     }
-
-    if(!isset($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = uniqid('token', TRUE);
-    }
-
-    $csrf_token = $_SESSION['csrf_token'];
 
     if($_SERVER["REQUEST_METHOD"] === "GET"){
         if(isset($_SERVER["PATH_INFO"])){

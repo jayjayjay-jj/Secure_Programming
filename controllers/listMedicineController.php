@@ -1,6 +1,5 @@
 <?php
     require "connection.php";
-    require "config.php";
 
     function getAllMedicine(){
         global $conn;

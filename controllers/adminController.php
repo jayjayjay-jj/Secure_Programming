@@ -1,7 +1,6 @@
 <?php
 require "connection.php";
 require "util.php";
-require "config.php";
 
 class Admin{
         

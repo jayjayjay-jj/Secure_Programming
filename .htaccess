@@ -1,24 +1,10 @@
 #Set Starting Page
-#DirectoryIndex views/login.php
+DirectoryIndex views/login.php
 
 #Disable Directory Listing
 Options -Indexes
 
-<IfModule mod_php.c>
-    Header unset X-Powered-By
-</IfModule>
-
-<IfModule mod_headers.c>
-    Header unset Server
-</IfModule>
-
-Header unset Pragma
-Header unset Last-Modified
-Header unset Cache-Control
-Header always append X-Frame-Options SAMEORIGIN
-Header always append X-Frame-Options DENY
-
 #Error Messages
-ErrorDocument 401 /views/error/401.php
-ErrorDocument 403 /views/error/403.php
-ErrorDocument 404 /views/error/404.php
+ErrorDocument 401 "You are unauthorized"
+ErrorDocument 403 "You are forbidden"
+ErrorDocument 404 "Not found LOLOLOL"

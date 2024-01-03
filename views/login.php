@@ -1,7 +1,5 @@
 <?php
     session_start();
-    header_remove("X-Powered-By");
-    header('X-Frame-Options: DENY, SAMEORIGIN');
     unset($_SESSION['login_message']);
 
     if(isset($_SESSION['user']) && $_SESSION['user']['UserRole'] === "Admin") {
@@ -38,7 +36,7 @@
             <div class="title">Sign In</div>
             <br><br>
 
-            <form action="../controllers/signInController.php" method="POST">
+            <form action="../../controllers/signInController.php" method="POST">
                 <div class="form-div">
                     <label for="username" class="form-label">
                         Username
