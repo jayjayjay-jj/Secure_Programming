@@ -40,6 +40,10 @@
                 $_SESSION['error_message'] = "All field must be filled";
                 header('Location: ../views/register.php?error=1');
 
+            } else if(strlen($username) < 5 || strlen($username) > 12) {
+                $_SESSION['error_message'] = "Username length must be between 5 and 12 characters";
+                header('Location: ../views/register.php?error=1');
+
             } else if(!checkUsername($username)) {
                 $_SESSION['error_message'] = "Username must be unique!";
                 header('Location: ../views/register.php?error=1');
@@ -48,7 +52,7 @@
                 $_SESSION['error_message'] = "Password must be at least 8 characters";
                 header('Location: ../views/register.php?error=1');
                 
-            } else if (!preg_match('/[A-Z]/', $password)) {
+            } else if(!preg_match('/[A-Z]/', $password)) {
                 $_SESSION['error_message'] = "Password must contain at least one uppercase letter.";
                 header('Location: ../views/register.php?error=1');
                 
@@ -60,7 +64,7 @@
                 $_SESSION['error_message'] = "Password must contain at least one digit.";
                 header('Location: ../views/register.php?error=1');
                 
-            } else if (!preg_match('/[^a-zA-Z\d]/', $password)) {
+            } else if (!preg_match('//', $password)) {
                 $_SESSION['error_message'] = "Password must contain at least one special character.";
                 header('Location: ../views/register.php?error=1');
                 
