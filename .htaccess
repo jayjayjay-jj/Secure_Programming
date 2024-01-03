@@ -8,10 +8,15 @@ Options -Indexes
     Header unset X-Powered-By
 </IfModule>
 
+<IfModule mod_headers.c>
+    Header unset Server
+</IfModule>
+
 Header unset Pragma
 Header unset Last-Modified
 Header unset Cache-Control
-Header unset Server
+Header always append X-Frame-Options SAMEORIGIN
+Header always append X-Frame-Options DENY
 
 #Error Messages
 ErrorDocument 401 /views/error/401.php
