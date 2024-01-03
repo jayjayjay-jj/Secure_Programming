@@ -36,7 +36,7 @@
             <div class="title">Sign In</div>
             <br><br>
 
-            <form action="../../controllers/signInController.php" method="POST">
+            <form action="../controllers/signInController.php" method="POST">
                 <div class="form-div">
                     <label for="username" class="form-label">
                         Username
