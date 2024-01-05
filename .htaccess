@@ -15,8 +15,8 @@ Options -Indexes
 Header unset Pragma
 Header unset Last-Modified
 Header unset Cache-Control
-Header always append X-Frame-Options SAMEORIGIN
 Header always append X-Frame-Options DENY
+Header always append X-Frame-Options SAMEORIGIN
 
 #Error Messages
 ErrorDocument 401 /views/error/401.php

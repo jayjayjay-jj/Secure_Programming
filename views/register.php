@@ -40,7 +40,7 @@
             <br><br>
 
             <?php if (empty($registrationMessage)) : ?>
-                <form action="../../controllers/signUpController.php" method="POST">
+                <form action="../controllers/signUpController.php" method="POST">
                     <div class="form-div">
                         <label for="username" class="form-label">
                             Username
