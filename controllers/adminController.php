@@ -80,6 +80,13 @@ class Admin{
         
         global $conn;
 
+        if(Util::isInvalidCSRFToken($_POST['csrf_token'], $_SESSION['csrf_token'])) {
+            $errorMessage = "Anti-CSRF token invalid";
+            $_SESSION['error_message'] = $errorMessage;
+
+            header('Location: ../views/medicine/updateMedicine?error=1');
+        }
+
         $stmt = $conn->prepare("delete from msmedicine where MedicineID = ?");
         $stmt->bind_param("s", $medID);
         $stmt->execute();
