@@ -16,6 +16,8 @@
         $_SESSION['csrf_token'] = uniqid('token', TRUE);
     }
     
+    $csrf_token = $_SESSION['csrf_token'];
+
     $hashID = substr($_SERVER['PATH_INFO'], 1);
     $medID = Admin::GetMedicineIDByHashID($hashID);
 
@@ -100,6 +102,8 @@
 
                     <input type="text" class="form-input" name="medicineLink" id="medicineLink" value="<?php echo $medLink ?>">
                 </div>
+                
+                <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                 
                 <button class="button">Update Medicine</button>
             </form>
